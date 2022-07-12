@@ -1,6 +1,6 @@
 class Pond {
   // Bassin carre centre en x,y
-  constructor(x,y,width) {
+  constructor(x,y,width,sides=4) {
     this.x=x;
     this.y=y;
 
@@ -25,8 +25,13 @@ class Pond {
       [topLeft,bottomLeft],
       [topRight,bottomRight],
       [topLeft,topRight],
-      [bottomLeft,bottomRight]
+      [bottomLeft,bottomRight]    
     ];
+
+
+    this.sides = sides;
+    this.#setBorders();
+
 
 
   }
@@ -53,19 +58,51 @@ class Pond {
   }
 
   #setBorders() {
+    /*
     var numberOfSides = 3,
         size = ctx.canvas.width / 2,
         Xcenter = ctx.canvas.width / 2,
         Ycenter = ctx.canvas.height / 2;
+    */
 
-    ctx.beginPath();
-    ctx.moveTo( Xcenter +  size * Math.cos(0), Ycenter +  size *  Math.sin(0) );
-    for (var i = 1; i <= numberOfSides;i += 1) {
-        ctx.lineTo (Xcenter + size * Math.cos(i * 2 * Math.PI / numberOfSides), Ycenter + size * Math.sin(i * 2 * Math.PI / numberOfSides));
+    let xa,ya,xb,yb;
+    this.borders = [];
+    
+    xa = Math.ceil( this.x + this.width /2 * Math.cos(0) );
+    ya = Math.ceil( this.y + this.height /2 * Math.sin(0) );
+  
+    for (var i = 1; i <= this.sides; i++ ) {
+        xb = Math.ceil( this.x + this.width/2 * Math.cos(i * 2 * Math.PI / this.sides ));
+        yb = Math.ceil( this.y + this.height/2  * Math.sin(i * 2 * Math.PI / this.sides ));
+        
+        this.borders.push( [{x:xa,y:ya},{x:xb,y:yb}]);
+        xa = xb;
+        ya = yb;
     }
-    ctx.strokeStyle = "green";
-    ctx.lineWidth = 3;
-    ctx.stroke();
+
+    /*
+    xa = this.x + this.width * Math.cos(0);
+    ya = this.y + this.height * Math.sin(0);
+    this.borders.push( [{x:xa,y:ya},{x:xb,y:yb}]);
+    */
+    
+    /*
+
+    // 4 points 
+    const topLeft={x:this.left,y:this.top};
+    const topRight={x:this.right,y:this.top};
+    const bottomLeft={x:this.left,y:this.bottom};
+    const bottomRight={x:this.right,y:this.bottom};
+
+    // 2 segments
+    this.borders=[
+      [topLeft,bottomLeft],
+      [topRight,bottomRight],
+      [topLeft,topRight],
+      [bottomLeft,bottomRight]
+    ];
+    */
+
   }
 
 }

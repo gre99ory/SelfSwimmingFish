@@ -10,7 +10,7 @@ networkCanvas.width = 400;
 const pondCtx = pondCanvas.getContext("2d");
 const networkCtx = networkCanvas.getContext("2d");
 
-const pond = new Pond(pondCanvas.width/2,pondCanvas.width/2,pondCanvas.width*.9);
+const pond = new Pond(pondCanvas.width/2,pondCanvas.width/2,pondCanvas.width*.95,30);
 
 // x,y, width, height, controlType, maxSpeed
 //const fish = new Fish(pond.getCenterX(),pond.getCenterY(),30,50,"KEYS");
@@ -26,7 +26,6 @@ const pond = new Pond(pondCanvas.width/2,pondCanvas.width/2,pondCanvas.width*.9)
 */
 
 
-const N = 10;
 const traffic = generateFishes(5);
 const fishes  = generateFishes(20);
 
