@@ -256,10 +256,10 @@ class Fish {
         ctx.textBaseline="middle";
         ctx.strokeStyle="black";
         ctx.fillStyle="white";
-        ctx.font="10px Arial";
-        ctx.fillText(this.distance,this.x,this.y);
+        ctx.font="12px Arial";
+        ctx.fillText(Math.ceil(this.distance),this.x,this.y);
         ctx.lineWidth=.5;
-        ctx.strokeText(this.distance,this.x,this.y);
+        ctx.strokeText(Math.ceil(this.distance),this.x,this.y);
         ctx.restore();
 
         
